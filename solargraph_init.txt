@@ -1,0 +1,18 @@
+コード補完の設定（検証中）
+
+plugin [Ruby Solargraph]
+
+gem 'solargraph'
+
+bundle exec solargraph bundle
+
+setting -> keyword[solargraph]
+===add===
+    "solargraph.useBundler": true,
+    "ruby.intellisense": "rubyLocate",
+    "solargraph.bundlerPath": "/root/.rbenv/shims/bundle"
+=========
+
+gem 'yard'
+
+bundle exec yard gems
