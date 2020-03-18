@@ -1,5 +1,7 @@
 class RegisterResult
 
+    attr_accessor :result
+    
     def initialize(result)
         @result = result
     end
