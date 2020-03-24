@@ -1,6 +1,6 @@
 class UserController < ApplicationController
 
-    def token
+    def issue_token_for_register
         t = Auth.issueJwt()
         render json: {"token" => t}
     end

@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   
-  get 'user/token' => 'user#token'
+  get 'user/issue_token_for_register' => 'user#issue_token_for_register'
   post 'user/register' => 'user#register'
   
 end
