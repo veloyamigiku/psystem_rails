@@ -1,7 +1,8 @@
 class UserController < ApplicationController
 
     def issue_token_for_register
-        t = Auth.issueJwt()
+        # 利用者登録用のJWTトークンの有効期限を15分とする。
+        t = Auth.issueJwt(15)
         render json: {"token" => t}
     end
 
