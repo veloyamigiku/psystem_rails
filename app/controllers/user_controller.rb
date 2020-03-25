@@ -22,10 +22,13 @@ class UserController < ApplicationController
             return
         end
 
+        # パスワードをハッシュ化する。
+        password_hash = PasswordHash.md5(password)
+
         # 利用者を登録する。
         newUser = User.new
         newUser.name = name
-        newUser.password = password
+        newUser.password = password_hash
         newUser.username = username
         
         if newUser.save
