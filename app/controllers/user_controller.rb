@@ -1,13 +1,31 @@
 class UserController < ApplicationController
 
     def issue_token_for_register
+
+        rtIssueToken = ResultType::RtIssueToken.new()
+
         # 利用者登録用のJWTトークンの有効期限を15分とする。
-        t = Auth.issueJwt(15)
-        render json: {"token" => t}
+        t = Auth::Jwt.issueJwt(15)
+        rtIssueToken.result = true
+        rtIssueToken.token = t
+        render json: rtIssueToken.toHash
+
+    end
+
+    def issue_token_for_login
+
+        rtIssueToken = ResultType::RtIssueToken.new()
+        
+        # ログイン用のJWTトークンの有効期限を15分とする。
+        t = Auth::Jwt.issueJwt(15)
+        rtIssueToken.result = true
+        rtIssueToken.token = t
+        render json: rtIssueToken.toHash
+
     end
 
     def register
-        registerResult = RegisterResult.new(false)
+        registerResult = ResultType::RtRegister.new(false)
 
         # リクエストパラメータから、利用者登録情報を取得する。
         name = params[:name]
@@ -16,14 +34,14 @@ class UserController < ApplicationController
 
         # JWTトークンを検証する。
         token = request.headers["Authorization"]
-        result = Auth.verifyJwt(token)
+        result = Auth::Jwt.verifyJwt(token)
         if result.nil?
             render json: registerResult.toHash
             return
         end
 
         # パスワードをハッシュ化する。
-        password_hash = PasswordHash.md5(password)
+        password_hash = Auth::PasswordHash.md5(password)
 
         # 利用者を登録する。
         newUser = User.new
