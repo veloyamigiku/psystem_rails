@@ -57,5 +57,40 @@ class UserController < ApplicationController
         render json: registerResult.toHash
 
     end
+
+    def login
+
+        resultLogin = ResultType::RtLogin.new(false, nil)
+
+        # JWTトークンを検証する。
+        token = request.headers["Authorization"]
+        result = Auth::Jwt.verifyJwt(token)
+        if result.nil?
+            render json: resultLogin.toHash
+            return
+        end
+
+        puts(params)
+        # リクエストパラメータを取得する。
+        param_name = params[:name]
+        param_password = params[:password]
+
+        # ユーザを検索する。
+        user = User.find_by(name: param_name)
+        if user == nil
+            render json: resultLogin.toHash
+            return
+        end
+
+        # リクエストパラメータのパスワードをハッシュ化する。
+
+        # パスワードハッシュを比較する。
+
+        # JWTトークンを発行する。
+
+        resultLogin.result = true
+        render json: resultLogin.toHash
+
+    end
     
 end

@@ -57,5 +57,6 @@ Rails.application.routes.draw do
   get 'user/issue_token_for_register' => 'user#issue_token_for_register'
   post 'user/register' => 'user#register'
   get 'user/issue_token_for_login' => 'user#issue_token_for_login'
-  
+  post 'user/login' => 'user#login'
+
 end
