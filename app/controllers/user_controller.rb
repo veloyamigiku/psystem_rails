@@ -70,7 +70,6 @@ class UserController < ApplicationController
             return
         end
 
-        puts(params)
         # リクエストパラメータを取得する。
         param_name = params[:name]
         param_password = params[:password]
@@ -83,12 +82,18 @@ class UserController < ApplicationController
         end
 
         # リクエストパラメータのパスワードをハッシュ化する。
+        param_password_hash = Auth::PasswordHash.md5(param_password)
 
         # パスワードハッシュを比較する。
+        if user.password != param_password_hash
+            render json: resultLogin.toHash
+            return
+        end
 
         # JWTトークンを発行する。
-
+        resultLogin.token = Auth::Jwt.issueJwt(30)
         resultLogin.result = true
+        
         render json: resultLogin.toHash
 
     end
