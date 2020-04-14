@@ -1,5 +1,5 @@
 module ResultType
-    class RtRegister
+    class RtRegisterForUser
 
         attr_accessor :result
         

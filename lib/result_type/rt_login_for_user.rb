@@ -1,6 +1,6 @@
 module ResultType
 
-    class RtLogin < RtBase
+    class RtLoginForUser < RtBase
 
         attr_accessor :result, :token
 

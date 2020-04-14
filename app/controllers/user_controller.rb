@@ -25,7 +25,7 @@ class UserController < ApplicationController
     end
 
     def register
-        registerResult = ResultType::RtRegister.new(false)
+        registerResult = ResultType::RtRegisterForUser.new(false)
 
         # リクエストパラメータから、利用者登録情報を取得する。
         name = params[:name]
@@ -60,7 +60,7 @@ class UserController < ApplicationController
 
     def login
 
-        resultLogin = ResultType::RtLogin.new(false, nil)
+        resultLogin = ResultType::RtLoginForUser.new(false, nil)
 
         # JWTトークンを検証する。
         token = request.headers["Authorization"]
