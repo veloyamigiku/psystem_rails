@@ -1,8 +1,8 @@
 class UserController < ApplicationController
 
-    def issue_token_for_register
+    def issue_register_token
 
-        rtIssueToken = ResultType::RtIssueToken.new()
+        rtIssueToken = ResultType::RtIssueRegisterTokenForUser.new()
 
         # 利用者登録用のJWTトークンの有効期限を15分とする。
         t = Auth::Jwt.issueJwt(15)
@@ -12,9 +12,9 @@ class UserController < ApplicationController
 
     end
 
-    def issue_token_for_login
+    def issue_login_token
 
-        rtIssueToken = ResultType::RtIssueToken.new()
+        rtIssueToken = ResultType::RtIssueLoginTokenForUser.new()
         
         # ログイン用のJWTトークンの有効期限を15分とする。
         t = Auth::Jwt.issueJwt(15)

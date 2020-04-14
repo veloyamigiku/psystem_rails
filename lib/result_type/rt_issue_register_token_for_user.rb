@@ -1,5 +1,5 @@
 module ResultType
-    class RtIssueToken < RtBase
+    class RtIssueRegisterTokenForUser < RtBase
 
         attr_accessor :result, :token
         
