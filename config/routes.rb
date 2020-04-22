@@ -60,4 +60,7 @@ Rails.application.routes.draw do
   post 'user/login' => 'user#login'
   get 'point_operator/issue_register_token' => 'point_operator#issue_register_token'
   post 'point_operator/register' => 'point_operator#register'
+  get 'point_operator/issue_login_token' => 'point_operator#issue_login_token'
+  post 'point_operator/login' => 'point_operator#login'
+  post 'point_operator/add_point_history' => 'point_operator#add_point_history'
 end
